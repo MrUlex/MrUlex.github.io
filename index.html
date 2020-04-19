@@ -1,54 +1,48 @@
-	<!DOCTYPE html>
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-	<title>MrUlex</title>
-		
-		<head>
-			<link href="main.css" rel="stylesheet">
-			<script type="text/javascript" src="snow.js"></script>
-		</head>
+  <meta charset="utf-8">
+  <title>particles.js</title>
+  <meta name="description" content="particles.js is a lightweight JavaScript library for creating particles.">
+  <meta name="author" content="Vincent Garreau" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <link rel="stylesheet" media="screen" href="css/style.css">
+</head>
+<body>
 
-		<head>
-			<title>Цвет фона</title>
-				<style>
-					body {
-						background: #1f1f23; /* Цвет фона */
-						color: #FFFFFF; /* Цвет текста */
-						}
-				</style>
-		</head>
+<!-- count particles -->
+<div class="count-particles">
+  <span class="js-count-particles">--</span> particles
+</div>
 
-		<head>
-			<div class="titles animate">
-				<h1>MrUlex</h1>
-		</head>	
-		
-		<head>
-			<div class="links show animate">
-				<vk><a href="https://vk.com/id278299332" target="_blank" style="color: #4169E1" >VK</a></vk>
-				<discord><a href="https://discordapp.com/invite/jwTKZRT" target="_blank" style="color: #4682B4" >DISCORD</a></discord>
-				<steam><a href="https://steamcommunity.com/id/MRULEX/" target="_blank" style="color: #16346E" >STEAM</a></steam>
-			</div>
-		</head>
-		
-		<head>
-			<div class="projects animate">
-				<hr>
-				<a href="https://smokydog.ru" target="_blank" style="color:#FF4500">† SmokyDOG™ Project †</a>
-			</div>
-		</head>
-				
-		<head>
-			<title>Цвет ссылок</title>
-			<body link="red" vlink="#FA7508" alink="#B55F19" bgcolor="black">			
-		</head>	
+<!-- particles.js container -->
+<div id="particles-js"></div>
 
-		<head>
-			<title>Полосы прокрутки</title>
-				<style>
-					html { overflow:  hidden; }
-					div { height:  500px; }
-				</style>
-		</head>	
-</head>	
+<!-- scripts -->
+<script src="../particles.js"></script>
+<script src="js/app.js"></script>
+
+<!-- stats.js -->
+<script src="js/lib/stats.js"></script>
+<script>
+  var count_particles, stats, update;
+  stats = new Stats;
+  stats.setMode(0);
+  stats.domElement.style.position = 'absolute';
+  stats.domElement.style.left = '0px';
+  stats.domElement.style.top = '0px';
+  document.body.appendChild(stats.domElement);
+  count_particles = document.querySelector('.js-count-particles');
+  update = function() {
+    stats.begin();
+    stats.end();
+    if (window.pJSDom[0].pJS.particles && window.pJSDom[0].pJS.particles.array) {
+      count_particles.innerText = window.pJSDom[0].pJS.particles.array.length;
+    }
+    requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+</script>
+
+</body>
 </html>
