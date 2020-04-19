@@ -1,119 +1,109 @@
-var density = 70,
-    speed = 2,
-    winHeight = window.innerHeight,
-    winWidth = window.innerWidth,
-    start = {
-        yMin: winHeight - 50,
-        yMax: winHeight,
-        xMin: (winWidth / 2) + 10,
-        xMax: (winWidth / 2) + 40,
-        scaleMin: 0.1,
-        scaleMax: 0.25,
-        scaleXMin: 0.1,
-        scaleXMax: 1,
-        scaleYMin: 1,
-        scaleYMax: 2,
-        opacityMin: 0.1,
-        opacityMax: 0.4
+particlesJS("particles-js", {
+  "particles":{
+    "number":{
+      "value":200,
+      "density":{
+        "enable":true,
+        "value_area":3000
+      }
     },
-    mid = {
-        yMin: winHeight * 0.4,
-        yMax: winHeight * 0.9,
-        xMin: winWidth * 0.1,
-        xMax: winWidth * 0.9,
-        scaleMin: 0.2,
-        scaleMax: 0.8,
-        opacityMin: 0.5,
-        opacityMax: 1
+    "color":{
+      "value":"#fd7907"
     },
-    end = {
-        yMin: -180,
-        yMax: -180,
-        xMin: -100,
-        xMax: winWidth + 180,
-        scaleMin: 0.1,
-        scaleMax: 1,
-        opacityMin: 0.4,
-        opacityMax: 0.7
-    };
-
-function range(map, prop) {
-    var min = map[prop + 'Min'],
-        max = map[prop + 'Max'];
-    return min + (max - min) * Math.random();
-}
-
-function sign() {
-    return Math.random() < 0.5 ? -1 : 1;
-}
-
-function randomEase(easeThis, easeThat) {
-    if (Math.random() < 0.5) {
-        return easeThat;
+    "shape":{
+      "type":"circle",
+      "stroke":{
+        "width":0,
+        "color":"#000000"
+      },
+      "polygon":{
+        "nb_sides":3
+      },
+      "image":{
+        "src":"img/github.svg",
+        "width":100,
+        "height":100
+      }
+    },
+    "opacity":{
+      "value":0.8,
+      "random":true,
+      "anim":{
+        "enable":false,
+        "speed":1,
+        "opacity_min":0.1,
+        "sync":false
+      }
+    },
+    "size":{
+      "value":4,
+      "random":true,
+      "anim":{
+        "enable":true,
+        "speed":5,
+        "size_min":0.01,
+        "sync":false
+      }
+    },
+    "line_linked":{
+      "enable":false,
+      "distance":500,
+      "color":"#ffffff",
+      "opacity":0.4,
+      "width":1
+    },
+    "move":{
+      "enable":true,
+      "speed":7.8,
+      "direction":"top",
+      "random":true,
+      "straight":false,
+      "out_mode":"out",
+      "bounce":false,
+      "attract":{
+        "enable":false,
+        "rotateX":600,
+        "rotateY":1200
+      }
     }
-    return easeThis;
-}
-
-function spawn(particle) {
-    var wholeDuration = (10 / speed) * (0.7 + Math.random() * 0.4),
-        delay = wholeDuration * Math.random(),
-        partialDuration = (wholeDuration + 1) * (0.2 + Math.random() * 0.3);
-    TweenLite.set(particle, {
-        y: range(start, 'y'),
-        x: range(start, 'x'),
-        scaleX: range(start, 'scaleX'),
-        scaleY: range(start, 'scaleY'),
-        scale: range(start, 'scale'),
-        opacity: range(start, 'opacity'),
-        visibility: 'hidden'
-    });
-    // Moving upward
-    TweenLite.to(particle, partialDuration, {
-        delay: delay,
-        y: range(mid, 'y'),
-        ease: randomEase(Linear.easeOut, Back.easeInOut)
-    });
-    TweenLite.to(particle, wholeDuration - partialDuration, {
-        delay: partialDuration + delay,
-        y: range(end, 'y'),
-        ease: Back.easeIn
-    });
-    //Moving on axis X
-    TweenLite.to(particle, partialDuration, {
-        delay: delay,
-        x: range(mid, 'x'),
-        ease: Power1.easeOut
-    });
-    TweenLite.to(particle, wholeDuration - partialDuration, {
-        delay: partialDuration + delay,
-        x: range(end, 'x'),
-        ease: Power1.easeIn
-    });
-    //opacity and scale
-    partialDuration = wholeDuration * (0.5 + Math.random() * 0.3);
-    TweenLite.to(particle, partialDuration, {
-        delay: delay,
-        scale: range(mid, 'scale'),
-        autoAlpha: range(mid, 'opacity'),
-        ease: Linear.easeNone
-    });
-    TweenLite.to(particle, wholeDuration - partialDuration, {
-        delay: partialDuration + delay,
-        scale: range(end, 'scale'),
-        autoAlpha: range(end, 'opacity'),
-        ease: Linear.easeNone,
-        onComplete: spawn,
-        onCompleteParams: [particle]
-    });
-}
-window.onload = createParticle;
-
-function createParticle() {
-    var i, particleSpark;
-    for (i = 0; i < density; i += 1) {
-        particleSpark = document.createElement('div');
-        particleSpark.classList.add('spark');
-        document.body.appendChild(particleSpark);
-        spawn(particleSpark);
+  },"interactivity":{
+    "detect_on":"canvas",
+    "events":{
+      "onhover":{
+        "enable":false,
+        "mode":"bubble"
+      },
+      "onclick":{
+        "enable":false,
+        "mode":"repulse"
+      },
+      "resize":true
+    },
+    "modes":{
+      "grab":{
+        "distance":400,
+        "line_linked":{
+          "opacity":0.5
+        }
+      },
+      "bubble":{
+        "distance":400,
+        "size":4,
+        "duration":0.3,
+        "opacity":1,
+        "speed":3
+      },
+      "repulse":{
+        "distance":200,
+        "duration":0.4
+      },
+      "push":{
+        "particles_nb":4
+      },
+      "remove":{
+        "particles_nb":2
+      }
     }
-}
+  },
+  "retina_detect":true
+});
