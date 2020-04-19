@@ -1,9 +1,9 @@
 {
   "name": "particles.js",
   "main": "particles.js",
-  "homepage": "https://github.com/VincentGarreau/particles.js",
+  "homepage": "https://github.com/MrUlex/particles.js",
   "authors": [
-    "Vincent Garreau <vin.garreau@gmail.com>"
+    "acedevil.gaming@gmail.com>"
   ],
   "description": "A lightweight JavaScript library for creating particles.",
   "keywords": [
