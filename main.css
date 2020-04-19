@@ -1,18 +1,8 @@
-body {
-  background-color: #13001c;
+* {
+  padding: 0;
+  margin: 0;
 }
-html,
+
 body {
-  height: 100%;
-  overflow: hidden;
-}
-.spark {
-  background-color: #de4a00;
-  font-family: "Helvetica", sans-serif;
-  visibility: hidden;
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  border-radius: 30%;
-  box-shadow: 0 0 5px #ab000b;
+  background-color: #160001;
 }
